@@ -12,9 +12,10 @@ _Dynamic Gameplay_: Engage with monsters, navigate through the night, and immers
 _Customizable Settings_: Tailor the game's difficulty and ambiance using the Settings menu. Adjust volume, select night options, and customize monster difficulty to your liking.
 _Sound Engineering_: Integrated sound engine to enhance gameplay immersion.
 _Debug Mode_: Developers and avid gamers can activate a debug mode for troubleshooting or a more in-depth understanding of the game mechanics.
-_This game does not have save functionality, so please feel free to use this feature to resume your progress between sessions._
+_This game does not have save functionality, so please feel free to use this feature to resume your progress between sessions._  
+
+
 **Getting Started**
----
 _Prerequisites_
 Ensure you have Java installed.
 
