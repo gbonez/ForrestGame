@@ -4,7 +4,7 @@ A game hand coded by me for my friend Forrest's birthday! (Happy birthday Forres
 
 **Overview**
 ---
-This game combines intriguing gameplay mechanics with a customizable user experience. Players can tweak game settings such as volume, night settings, and monster difficulty to create a gameplay environment tailored to their preferences.
+This game combines intriguing gameplay mechanics with a customizable user experience. Players can tweak game settings such as volume, night settings, and monster difficulty to create a gameplay environment tailored to their preferences. The game is similar to that of the classic _Five Night's at Freddy's_, where you will have to fight to survive the night using a myriad of tools at your disposal.
 
 **Features**
 ---
