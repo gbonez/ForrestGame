@@ -14,12 +14,10 @@ _Sound Engineering_: Integrated sound engine to enhance gameplay immersion.
 _Debug Mode_: Developers and avid gamers can activate a debug mode for troubleshooting or a more in-depth understanding of the game mechanics.
 _This game does not have save functionality, so please feel free to use this feature to resume your progress between sessions._  
 
+_Installation_
 ---
 _Prerequisites_
 Ensure you have Java installed.
-
-_Installation_
----
 For a compiled .exe version of this game please contact me! 
 All files are present for install if you want to try manually.
 (You will want to run Runner.java to boot up the game)
