@@ -144,8 +144,7 @@ public class SoundEngine {
 	private Clip loadSound(String soundFileName) {
 		Clip clip = null;
 		try {
-			InputStream soundInputStream = this.getClass().getClassLoader()
-					.getResourceAsStream("sounds/" + soundFileName);
+			InputStream soundInputStream = this.getClass().getResourceAsStream("/sounds/" + soundFileName);
 
 			if (soundInputStream != null) {
 				AudioInputStream audioInput = AudioSystem.getAudioInputStream(soundInputStream);

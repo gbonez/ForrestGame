@@ -98,8 +98,8 @@ public class GameSequence {
 				double estimatedTimeSec = power / rateOfLoss;
 				int minutes = (int) (estimatedTimeSec / 60);
 				int seconds = (int) (estimatedTimeSec % 60);
-				System.out.printf("[DEBUG] Power Ratio: %.2f | Loss Rate: %.4f%%/s | Est.time to 0%%: %d:%02d\n",
-						powerRatio, rateOfLoss, minutes, seconds);
+				// Power Ratio: %.2f | Loss Rate: %.4f%%/s | Est.time to 0%%: %d:%02d\n",
+				// powerRatio, rateOfLoss, minutes, seconds);
 				power -= actualDrain;
 				gui.updatePower();
 

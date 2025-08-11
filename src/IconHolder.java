@@ -1,5 +1,8 @@
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -190,29 +193,38 @@ public class IconHolder {
 	}
 
 	/**
-	 * Constructs the GUI by loading image icons from the file directory and
-	 * populating the imageIcons map.
+	 * Constructs the GUI by reading a text file for image names, loading said image
+	 * names from the file directory and populating the imageIcons map.
 	 */
 	public void construct() {
-		List<Path> pathList = new ArrayList<Path>();
 		try {
 			System.out.println("Attempting to load images...");
-			URL resourceURL = getClass().getResource("/");
-			if (resourceURL != null) {
-				Path resource = Paths.get(resourceURL.toURI());
-				pathList = FileFinder.listPNG(resource);
-				System.out.println("Images loaded! Generating IconHolder...");
-			} else {
-				System.err.println("Error reading from resources folder. Images not loaded.");
-				System.out.println("Generating empty IconHolder...");
+
+			InputStream listStream = getClass().getResourceAsStream("/icon_list.txt");
+			if (listStream == null) {
+				System.err.println("Resource list not found!");
+				return;
 			}
-		} catch (IOException | URISyntaxException e) {
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(listStream));
+			String imageName;
+			while ((imageName = reader.readLine()) != null) {
+				String path = imageName;
+				URL imageUrl = getClass().getResource(path);
+				if (imageUrl != null) {
+					ImageIcon icon = new ImageIcon(imageUrl);
+					addIcon(fileRenaming(Paths.get(imageName)), icon);
+				} else {
+					System.err.println("Could not load image: " + path);
+				}
+			}
+
+			System.out.println("Images loaded! IconHolder generated!");
+
+		} catch (IOException e) {
 			System.err.println("Error reading from file. Images not loaded.");
+			e.printStackTrace();
 		}
-		for (Path path : pathList) {
-			imageIcons.put(fileRenaming(path), new ImageIcon(path.toAbsolutePath().toString()));
-		}
-		System.out.println("IconHolder generated!");
 	}
 
 	/**

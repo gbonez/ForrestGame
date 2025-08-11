@@ -18,13 +18,9 @@ _Debug Mode_: Developers and avid gamers can activate a debug mode for troublesh
 
 _This game does not have save functionality, so please feel free to use this feature to resume your progress between sessions._  
 
-_Installation_
+**_Installation_**
 ---
-_Prerequisites_
-Ensure you have Java installed.
-For a compiled .exe version of this game please contact me! 
-All files are present for install if you want to try manually.
-(You will want to run Runner.java to boot up the game)
+_Via IDE:_ 1.Clone the repository 2. Ensure you have at least Java 17, 3. Launch Runner.java
 
 _Starting the Game_   
 ---
