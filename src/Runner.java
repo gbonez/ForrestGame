@@ -1,3 +1,4 @@
+
 /**
  * The Runner class serves as the main entry point for the game application. It
  * initializes and configures various components of the game such as the GUI,

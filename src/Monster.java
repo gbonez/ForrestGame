@@ -1,3 +1,4 @@
+
 /**
  * Represents an abstract Monster class that outlines the common properties and
  * behaviors of different types of monsters in the game. Each monster has a
