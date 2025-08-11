@@ -98,7 +98,7 @@ public class GameSequence {
 				double estimatedTimeSec = power / rateOfLoss;
 				int minutes = (int) (estimatedTimeSec / 60);
 				int seconds = (int) (estimatedTimeSec % 60);
-				System.out.printf("[DEBUG] Power Ratio: %.2f | Loss Rate: %.4f%%/s | Est. time to 0%%: %d:%02d\n",
+				System.out.printf("[DEBUG] Power Ratio: %.2f | Loss Rate: %.4f%%/s | Est.time to 0%%: %d:%02d\n",
 						powerRatio, rateOfLoss, minutes, seconds);
 				power -= actualDrain;
 				gui.updatePower();
@@ -176,7 +176,9 @@ public class GameSequence {
 					if (time != 0 && time != 4) {
 						for (int i = 0; i < monsters.size(); i++) {
 							Monster monster = monsters.get(i);
-							monster.setDifficulty((monster.getDifficulty() + 1));
+							if (monster.getDifficulty() > 0) {
+								monster.setDifficulty(monster.getDifficulty() + 1);
+							}
 						}
 					}
 					time++;
@@ -276,9 +278,6 @@ public class GameSequence {
 		monsters.get(1).setDifficulty(right);
 		monsters.get(2).setDifficulty(pirate);
 		monsters.get(3).setDifficulty(griddy);
-		if (monsters.get(0).debug) {
-			movementDelay = 0;
-		}
 	}
 
 	/**

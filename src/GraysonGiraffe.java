@@ -34,6 +34,9 @@ public class GraysonGiraffe extends Monster {
 	/** Flag to determine if the sprint animation has been played. */
 	public boolean animationPlayed;
 
+	/** Flag to determine if the door has been hit at least once. */
+	public boolean firstDoorHit;
+
 	/**
 	 * Constructs a new GraysonGiraffe monster with a given name, starting room, and
 	 * GUIBuilder. Initializes both movement and sprint timers to manage the
@@ -46,6 +49,7 @@ public class GraysonGiraffe extends Monster {
 	 */
 	public GraysonGiraffe(String name, int start, GUIBuilder other) {
 		super(name, start, other);
+		firstDoorHit = false;
 		minus = 2;
 		animationPlayed = false;
 		movementTimer = new Timer(MOVEMENT, new ActionListener() {
@@ -68,8 +72,10 @@ public class GraysonGiraffe extends Monster {
 					animationPlayed = false;
 					gui.powerDrop(minus);
 					gui.getSound().playForrestSound(0, true);
-					if (minus <= 2) {
+					if (minus <= 2 && firstDoorHit) {
 						minus = minus + 2;
+					} else {
+						firstDoorHit = true;
 					}
 					roomLocation = 0;
 					sprintTimer.stop();
