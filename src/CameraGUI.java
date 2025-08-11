@@ -158,7 +158,7 @@ public class CameraGUI {
 	 * Cleans up the camera visuals and stops any related timers.
 	 */
 	public void clean() {
-		System.out.println("CAMERA CLOSING...");
+		// System.out.println("CAMERA CLOSING...");
 		if (kitchenTimer.isRunning()) {
 			kitchenTimer.stop();
 			sound.stopCameraSound(6);

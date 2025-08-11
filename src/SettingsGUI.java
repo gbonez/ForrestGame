@@ -186,7 +186,7 @@ public class SettingsGUI {
 		leftieDecreaseButton = new JButton("<");
 		leftieDecreaseButton.addActionListener(e -> {
 			int difficulty = game.getMonster(0).getDifficulty();
-			if (difficulty > 1) {
+			if (difficulty > 0) {
 				difficulty--;
 				game.getMonster(0).setDifficulty(difficulty);
 				leftieCustomLabel.setText("Leftie Difficulty: " + difficulty);
@@ -206,7 +206,7 @@ public class SettingsGUI {
 		rightieDecreaseButton = new JButton("<");
 		rightieDecreaseButton.addActionListener(e -> {
 			int difficulty = game.getMonster(1).getDifficulty();
-			if (difficulty > 1) {
+			if (difficulty > 0) {
 				difficulty--;
 				game.getMonster(1).setDifficulty(difficulty);
 				rightieCustomLabel.setText("Rightie Difficulty: " + difficulty);
@@ -226,7 +226,7 @@ public class SettingsGUI {
 		graysonDecreaseButton = new JButton("<");
 		graysonDecreaseButton.addActionListener(e -> {
 			int difficulty = game.getMonster(2).getDifficulty();
-			if (difficulty > 1) {
+			if (difficulty > 0) {
 				difficulty--;
 				game.getMonster(2).setDifficulty(difficulty);
 				graysonCustomLabel.setText("Grayson Giraffe Difficulty: " + difficulty);
@@ -246,7 +246,7 @@ public class SettingsGUI {
 		griddyDecreaseButton = new JButton("<");
 		griddyDecreaseButton.addActionListener(e -> {
 			int difficulty = game.getMonster(3).getDifficulty();
-			if (difficulty > 1) {
+			if (difficulty > 0) {
 				difficulty--;
 				game.getMonster(3).setDifficulty(difficulty);
 				griddyCustomLabel.setText("Griddy Difficulty: " + difficulty);
