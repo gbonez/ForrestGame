@@ -52,7 +52,7 @@ public class GraysonGiraffe extends Monster {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (debug) {
-					debugRoom();
+					// debugRoom();
 				} else {
 					movementRoll();
 				}
@@ -68,7 +68,7 @@ public class GraysonGiraffe extends Monster {
 					animationPlayed = false;
 					gui.powerDrop(minus);
 					gui.getSound().playForrestSound(0, true);
-					if (minus < 6) {
+					if (minus <= 2) {
 						minus = minus + 2;
 					}
 					roomLocation = 0;

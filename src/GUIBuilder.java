@@ -588,11 +588,9 @@ public class GUIBuilder {
 						cameraButton.setVisible(true);
 						moveAroundTimer.start();
 						cameraOpened = false;
-						game.powerCalc();
 
 					});
 				} else {
-					game.powerDrain(.035);
 					backgroundLabel.setVisible(false);
 					cameraButton.setVisible(false);
 					moveAroundTimer.stop();
@@ -602,7 +600,6 @@ public class GUIBuilder {
 						camera.display();
 						cameraButton.setVisible(true);
 						cameraOpened = true;
-						game.powerCalc();
 						sound.playCameraSound(3, false);
 					});
 				}
@@ -634,7 +631,6 @@ public class GUIBuilder {
 					temp.add(labels.get("leftWall"));
 					leftLightHeld = true;
 					mainButtons.get("leftLightButton").setIcon(icons.getIcon("lightactive"));
-					game.powerDrain(.02);
 					temp.repaint();
 				}
 			}
@@ -661,7 +657,6 @@ public class GUIBuilder {
 					sound.playCameraSound(10, true);
 				} else {
 					sound.playCameraSound(2, false);
-					// game.rescheduleTask(powerCalc(), true);
 					if (game.getMonster(1).getRoomLocation() == 10) {
 						temp.add(DoorLightGUI.labelRefresh(true, labels.get("rightWindow"), "rightwindow", icons));
 						temp.add(DoorLightGUI.labelRefresh(false, labels.get("rightHallway"), "righthall", icons));
@@ -706,18 +701,14 @@ public class GUIBuilder {
 					IconHolder door = icons.getIcons("leftdoor");
 					door.sort();
 					if (!leftDoorShut) {
-						game.powerDrain(.06);
 						leftDoorShut = true;
 						labels.get("backgroundLabel").add(temp);
 						sound.playCameraSound(1, true);
 						DoorLightGUI.animateDoor(true, door, temp);
-						game.powerCalc();
 					} else {
-						game.powerDrain(.01);
 						leftDoorShut = false;
 						sound.playCameraSound(1, true);
 						DoorLightGUI.animateDoor(false, door, temp);
-						game.powerCalc();
 					}
 					mainButtons.get("leftDoorButton").setEnabled(false);
 					Timer enableButtonTimer = new Timer(1025, new ActionListener() {
@@ -751,18 +742,14 @@ public class GUIBuilder {
 					IconHolder door = icons.getIcons("rightdoor");
 					door.sort();
 					if (!rightDoorShut) {
-						game.powerDrain(.06);
 						rightDoorShut = true;
 						labels.get("backgroundLabel").add(temp);
 						sound.playCameraSound(1, true);
 						DoorLightGUI.animateDoor(true, door, temp);
-						game.powerCalc();
 					} else {
-						game.powerDrain(.01);
 						rightDoorShut = false;
 						sound.playCameraSound(1, true);
 						DoorLightGUI.animateDoor(false, door, temp);
-						game.powerCalc();
 					}
 					mainButtons.get("rightDoorButton").setEnabled(false);
 					Timer enableButtonTimer = new Timer(1025, new ActionListener() {

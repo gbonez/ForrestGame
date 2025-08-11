@@ -52,8 +52,9 @@ public class SettingsGUI {
 		backButton = new JButton("Back");
 		backButton.setBounds(10, 10, 100, 50);
 
-		debugCheckBox = new JCheckBox("Debug?");
-		debugCheckBox.setBounds(10, 100, 100, 25);
+		debugCheckBox = new JCheckBox("Unlock All? (Check then uncheck once to enable)");
+		debugCheckBox.setForeground(Color.WHITE);
+		debugCheckBox.setBounds(10, 100, 500, 25);
 		debugCheckBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {

@@ -34,7 +34,7 @@ public class Griddy extends Monster {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (debug) {
-					debugRoom();
+					// debugRoom();
 				} else {
 					movementRoll();
 				}

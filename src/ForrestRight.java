@@ -43,7 +43,7 @@ public class ForrestRight extends Monster {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (debug) {
-					debugRoom();
+					// debugRoom();
 				} else if (gui.rightDoorShut && roomLocation == 12) {
 					roomLocation = 3;
 					prevLocation = 12;

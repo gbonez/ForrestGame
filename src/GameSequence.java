@@ -40,10 +40,12 @@ public class GameSequence {
 	public int movementDelay = 60000;
 
 	/** Delay for initiating scary events. */
-	private int scaryDelay = 89170;
+	private int scaryDelay = 70000;
 
 	/** Timer for managing the power drain in the game. */
 	private PowerTimer powerTimer;
+	private long lastUpdateTime;
+	private double powerRatio = 1.0;
 
 	/** Timer to handle delays between monster movements. */
 	private Timer moveDelayTimer = new Timer();
@@ -81,11 +83,26 @@ public class GameSequence {
 	public GameSequence() {
 		monsters = new ArrayList<Monster>();
 		night = 0;
-		powerTimer = new PowerTimer(9600, new ActionListener() {
+		lastUpdateTime = System.currentTimeMillis();
+		powerTimer = new PowerTimer(100, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				power = power - 1;
+				long currentTime = System.currentTimeMillis();
+				long elapsed = currentTime - lastUpdateTime;
+				lastUpdateTime = currentTime;
+				double secondsElapsed = elapsed / 1000.0;
+				powerCalc();
+				double drainPerSecond = 1.0 / 9.6;
+				double actualDrain = secondsElapsed * drainPerSecond / powerRatio;
+				double rateOfLoss = drainPerSecond / powerRatio;
+				double estimatedTimeSec = power / rateOfLoss;
+				int minutes = (int) (estimatedTimeSec / 60);
+				int seconds = (int) (estimatedTimeSec % 60);
+				System.out.printf("[DEBUG] Power Ratio: %.2f | Loss Rate: %.4f%%/s | Est. time to 0%%: %d:%02d\n",
+						powerRatio, rateOfLoss, minutes, seconds);
+				power -= actualDrain;
 				gui.updatePower();
+
 			}
 		});
 	}
@@ -275,7 +292,7 @@ public class GameSequence {
 
 		powerTimer.start();
 		scheduleTasks();
-		hourTimer.scheduleAtFixedRate(hourTask, 89170, 89170); // 89170, 89170
+		hourTimer.scheduleAtFixedRate(hourTask, 70000, 70000); // 89170, 89170
 		moveDelayTimer.schedule(movementTask, movementDelay);
 		scaryTimer.schedule(scaryTask, scaryDelay, 20000);
 	}
@@ -293,36 +310,27 @@ public class GameSequence {
 	 * Calculates and updates the power based on the current state of the game.
 	 */
 	public void powerCalc() {
-		gui.updatePower();
-		double powerRatio;
-		long currentTime = System.currentTimeMillis();
-		if (currentTime - lastUpdated < THROTTLE_DELAY) {
-			return;
-		}
-		if (gui.leftDoorShut) {
-			if (gui.rightDoorShut && gui.cameraOpened) {
-				powerRatio = 0.15;
-			} else if (gui.rightDoorShut || gui.cameraOpened) {
-				powerRatio = 0.25;
-			} else {
-				powerRatio = 0.5;
-			}
-		} else if (gui.rightDoorShut) {
-			if (gui.cameraOpened) {
-				powerRatio = 0.25;
-			} else {
-				powerRatio = 0.5;
-			}
-		} else if (gui.cameraOpened) {
+		boolean leftDoor = gui.leftDoorShut;
+		boolean rightDoor = gui.rightDoorShut;
+		boolean camera = gui.cameraOpened;
+		boolean light = gui.leftLightHeld || gui.rightLightHeld;
+
+		boolean anyDoor = leftDoor || rightDoor;
+		boolean bothDoors = leftDoor && rightDoor;
+
+		if (leftDoor && rightDoor && camera && light) {
+			powerRatio = 0.15;
+		} else if ((camera || light) && bothDoors) {
+			powerRatio = 0.15;
+		} else if ((camera || light) && anyDoor) {
+			powerRatio = 0.25;
+		} else if (bothDoors) {
+			powerRatio = 0.25;
+		} else if (camera || light || anyDoor) {
 			powerRatio = 0.5;
 		} else {
-			powerRatio = 1;
+			powerRatio = 1.0;
 		}
-		powerTimer.pause();
-		powerTimer.updateDelay((int) (defaultDelay * powerRatio));
-		lastUpdated = currentTime;
-		powerTimer.resume();
-		power = power - .01;
 	}
 
 	/**
