@@ -20,7 +20,8 @@ _This game does not have save functionality, so please feel free to use this fea
 
 **_Installation_**
 ---
-_Via IDE:_ 1.Clone the repository 2. Ensure you have at least Java 17, 3. Launch Runner.java
+*Download here:* https://drive.google.com/drive/folders/1i0nVbO_a-xp3XTe745w41Yxj-V-wQaQ5?usp=drive_link
+*Via IDE*: 1.Clone the repository 2. Ensure you have at least Java 17 CDK, 3. Launch Runner.java and game will start up
 
 _Starting the Game_   
 ---
